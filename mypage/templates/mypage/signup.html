@@ -1,0 +1,26 @@
+{% extends 'mypage/layout.html' %}
+
+{% block main %}
+<div class="login_form__wrapper">
+  <h2 class="login_title">新規登録</h2>
+  <form method="POST" action="./signup_process">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="login_field">
+      {{ field.label_tag }}<br/>
+      {{ field }}
+      {{ field.errors|yesno:'*,' }}
+    </div>
+    {% endfor %}
+    {% for field in form_sub %}
+    <div class="login_field">
+      {{ field.label_tag }}<br/>
+      {{ field }}
+      {{ field.errors|yesno:'*,' }}
+    </div>
+    {% endfor %}
+    <button class="login__button" type="submit">登録</button>
+  </form>
+  <a class="login__switch" href="{% url 'login' %}">ログインする></a>
+</div>
+{% endblock %}

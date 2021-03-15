@@ -1,0 +1,32 @@
+{% extends 'mypage/layout.html' %}
+
+{% block main %}
+
+<p>※各テンプレートグループの、有効なテンプレートは、1個以上にならないようにしてください。</p>
+{% for template_type in template_types %}
+<div class="template_index_header">
+  <h3 class="template_index__type">{{ template_type.name }}</h3>
+  <div class="template_index__new">
+    <a href="{% url 'template_index_process' template_type.id %}">新規追加</a>
+  </div>
+</div>
+{% for template in templates %}
+{% if template.template_type_id == template_type.id %}
+<a href="{% url 'template_static_edit' template.id %}">
+<div class="template_index_list">
+    <div class="template_index_title_wrapper">
+      {% if template.valid == True %}
+      <p class="template_indes_valid__true">有効</p>
+      {% else %}
+      <p class="template_indes_valid__false">無効</p>
+      {% endif %}
+      <h4 class="template_index_title">{{ template.name }}</h4>
+    </div>
+    <p class="template_index_date">作成日：{{ template.created_at }}</p>
+</div>
+</a>
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+{% endblock %}

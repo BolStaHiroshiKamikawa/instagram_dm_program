@@ -1,0 +1,44 @@
+{% extends 'mypage/layout.html' %}
+
+{% block main %}
+<h2 class="content__title">{{ template_type.name }} 新規追加</h2>
+{% if template_type.id == 1 %}
+<form class="login" action="./template_follow_add_proccess" method="post" enctype="multipart/form-data">
+{% elif template_type.id == 2 %}
+<form class="login" action="./template_guest_add_proccess" method="post" enctype="multipart/form-data">
+{% elif template_type.id == 3 %}
+<form class="login" action="./template_repeater_add_proccess" method="post" enctype="multipart/form-data">
+{% else %}
+<form class="login" action="./template_campaign_add_proccess" method="post" enctype="multipart/form-data">
+{% endif %}
+  {% csrf_token %}
+  <div class="template_edit__form__wrapper">
+    <div class="template_edit__form__option">
+      {% for field in template_add_form %}
+      <div class="template_field">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors|yesno:'*,' }}
+      </div>
+      {% endfor %}
+      <button class="template__button" type="submit" name="button">保存する</button>
+    </div>
+    <div class="template_edit__form__content">
+      {% for field in template_add_text_form %}
+      <div class="template_field">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors|yesno:'*,' }}
+      </div>
+      {% endfor %}
+      {% for field in template_add_file_form %}
+      <div class="template_field">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors|yesno:'*,' }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</form>
+{% endblock %}

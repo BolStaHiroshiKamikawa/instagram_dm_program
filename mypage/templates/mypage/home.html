@@ -1,0 +1,69 @@
+{% extends 'mypage/layout.html' %}
+
+{% block main %}
+<div class="home__wrapper">
+  <div class="home__informations">
+    <div class="home__information__template">
+      <h2 class="home__title">有効中のテンプレート</h2>
+      {% for template in templates %}
+      {% if template.valid == True %}
+      <div class="home__information__template__content">
+        {% if template.template_type_id == 1 %}
+        <p class="home__information__template__content__type">フォロー時</p>
+        {% elif template.template_type_id == 2 %}
+        <p class="home__information__template__content__type">ゲスト時</p>
+        {% elif template.template_type_id == 3 %}
+        <p class="home__information__template__content__type">リピーター時</p>
+        {% elif template.template_type_id == 4 %}
+        <p class="home__information__template__content__type">キャンペーン</p>
+        {% endif %}
+        <p class="home__information__template__content__name">{{ template.name }}</p>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="home__information__follower">
+      <h2 class="home__title">現在のフォロワー数</h2>
+      <div class="home__information__follower__content">
+        <div class="home__information__follower__wrapper">
+          <h3 class="home__information__follower__content__title">フォロー</h3>
+          <p class="home__information__follower__content__number">{{ sended_follower }}</p>
+        </div>
+        <div class="home__information__follower__wrapper">
+          <h3 class="home__information__follower__content__title">ファン</h3>
+          <p class="home__information__follower__content__number">{{ sended_fun }}</p>
+        </div>
+        <div class="home__information__follower__wrapper">
+          <h3 class="home__information__follower__content__title">ゲスト</h3>
+          <p class="home__information__follower__content__number">{{ sended_guest }}</p>
+        </div>
+        <div class="home__information__follower__wrapper">
+          <h3 class="home__information__follower__content__title">リピーター</h3>
+          <p class="home__information__follower__content__number">{{ sended_repeater }}</p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <p>※フォロー：フォロー時テンプレートを送信済みのフォロワー</p>
+    <p>※ファン：フォロー時テンプレートに返信したフォロワー</p>
+    <p>※ゲスト：クーポンを利用して一回目に来店したフォロワー</p>
+    <p>※リピーター：2回以上来店したフォロワー</p>
+  </div>
+  <div class="home__messages">
+    <div class="home__personal_message">
+      <h2 class="home__title">あなたへのお知らせ</h2>
+      <div class="home__information__personal_message__contents_wrapper">
+        {% for message in messages %}
+        <a class="home__information__personal_message__content__link" href="https://instagram.com/{{ message.link }}">
+          <div class="home__information__personal_message__content">
+            <p>{{ message.message }}</p>
+            <p class="home__information__personal_message__date">{{ message.created_at }}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

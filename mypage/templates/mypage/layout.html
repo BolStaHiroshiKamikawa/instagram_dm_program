@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>インスタオートくん</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+  </head>
+  <body>
+    <header class="header">
+        <div class="header__above">
+            <h1 class="header__above__rogo"><a href="{% url 'mypage' %}">インスタオートくん</a></h1>
+            {% if page != 'first_form' %}
+            <div class="header__above__details">
+              <p class="header__above__details__mail">{{ user.mail }}</p>
+              <p class="header__above__details__name">{{ user.last_name }} {{ user.first_name }}</p>
+              <a class="header__above__logout" href="{% url 'logout' %}">ログアウト</a>
+            </div>
+            {% endif %}
+        </div>
+        {% if page != 'first_form' %}
+        <div class="header__under">
+          <ul class="header__under__menu">
+            <li class="header__under__account__list header__under__mainaccount"><a href="#"><img class="header__under__account__icon" src="{% static 'images/instagram_icon.svg' %}" alt="">{{ main_account.user_name }}</a>
+              <ul class="header__under__otheraccount">
+                {% for account in accounts %}
+                {% if account.id != main_account.id %}
+                <li class="header__under__account__list"><a href="{% url 'mypage_process' account.id%}"><img class="header__under__account__icon" src="{% static 'images/instagram_icon.svg' %}" alt="">{{ account.user_name }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if user.plan_id == 3 %}
+                <li class="header__under__account__list"><a href="{% url 'account_add' %}">アカウントを追加する</a></li>
+                {% else %}
+                <li class="header__under__account__list header__under__menu_list"><a href="#">プランを変更</a></li>
+                {% endif %}
+              </ul>
+            </li>
+            <li class="header__under__menu__list header__under__menu_list"><a href="{% url 'template_index' %}">テンプレ一ト</a>
+            </li>
+            <li class="header__under__menu__list header__under__menu_list"><a href="{% url 'follower_show' %}">フォロワー</a></li>
+          </ul>
+        </div>
+        {% endif %}
+    </header>
+    <main>
+      <div class="messages">
+        {% csrf_token %}
+        <p>{{ message }}</p>
+      </div>
+      <div class="container">
+        <div class="content">
+          {% block main %}{% endblock %}
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <p class="footer__copy">&copy;WebProLab Produced by ValueTimesFukuoka. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

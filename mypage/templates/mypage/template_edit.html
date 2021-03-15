@@ -1,0 +1,36 @@
+{% extends 'mypage/layout.html' %}
+
+{% block main %}
+<h2 class="content__title">{{ template.name }} 編集</h2>
+<form class="login" action="{% url 'template_static_edit_proccess' template_id %}" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="template_edit__form__wrapper">
+    <div class="template_edit__form__option">
+      {% for field in template_add_form %}
+      <div class="template_field">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors|yesno:'*,' }}
+      </div>
+      {% endfor %}
+      <button class="template__button" type="submit" name="button">保存する</button>
+    </div>
+    <div class="template_edit__form__content">
+      {% for field in template_add_text_form %}
+      <div class="template_field">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors|yesno:'*,' }}
+      </div>
+      {% endfor %}
+      {% for field in template_add_file_form %}
+      <div class="template_field">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors|yesno:'*,' }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</form>
+{% endblock %}

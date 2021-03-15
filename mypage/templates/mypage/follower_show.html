@@ -1,0 +1,66 @@
+{% extends 'mypage/layout.html' %}
+
+{% block main %}
+<div class="follower_show__wrapper">
+  <div class="follower_show__level">
+    <h2 class="follower_show__level__headding">フォロワー</h2>
+    <div class="follower_show__level__list">
+      {% for sended_account in sended_accounts %}
+      {% if sended_account.account_level_id == 1 %}
+      <a href="https://instagram.com/{{ sended_account.user_name }}">
+        <div class="follower_show__level__list__content">
+          <p class="follower_show__level__list__content__name">{{sended_account.user_name}}</p>
+          <p class="follower_show__level__list__content__date">{{ sended_account.created_at }}</p>
+        </div>
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="follower_show__level">
+    <h2 class="follower_show__level__headding">ファン</h2>
+    <div class="follower_show__level__list">
+      {% for sended_account in sended_accounts %}
+      {% if sended_account.account_level_id == 2 %}
+      <a href="https://instagram.com/{{ sended_account.user_name }}">
+        <div class="follower_show__level__list__content">
+          <p class="follower_show__level__list__content__name">{{sended_account.user_name}}</p>
+          <p class="follower_show__level__list__content__date">{{ sended_account.created_at }}</p>
+        </div>
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="follower_show__level">
+    <h2 class="follower_show__level__headding">ゲスト</h2>
+    <div class="follower_show__level__list">
+      {% for sended_account in sended_accounts %}
+      {% if sended_account.account_level_id == 3 %}
+      <a href="https://instagram.com/{{ sended_account.user_name }}">
+        <div class="follower_show__level__list__content">
+          <p class="follower_show__level__list__content__name">{{sended_account.user_name}}</p>
+          <p class="follower_show__level__list__content__date">{{ sended_account.created_at }}</p>
+        </div>
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="follower_show__level">
+    <h2 class="follower_show__level__headding">リピーター</h2>
+    <div class="follower_show__level__list">
+      {% for sended_account in sended_accounts %}
+      {% if sended_account.account_level_id == 4 %}
+      <a href="https://instagram.com/{{ sended_account.user_name }}">
+        <div class="follower_show__level__list__content">
+          <p class="follower_show__level__list__content__name">{{sended_account.user_name}}</p>
+          <p class="follower_show__level__list__content__date">{{ sended_account.created_at }}</p>
+        </div>
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

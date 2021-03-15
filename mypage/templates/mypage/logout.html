@@ -1,0 +1,8 @@
+{% extends 'mypage/layout.html' %}
+
+{% block main %}
+<form class="logout" action="" method="post">
+  {% csrf_token %}
+  <button type="submit" name="button">ログアウト</button>
+</form>
+{% endblock %}

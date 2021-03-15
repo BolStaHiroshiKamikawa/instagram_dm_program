@@ -1,0 +1,33 @@
+{% extends 'mypage/layout.html' %}
+
+{% block main %}
+<h2 class="content__title">アカウント追加</h2>
+<div class="">
+  <p>{{ name }}さん、初めまして！</p>
+  <p>まずは、あなたのインスタグラムアカウントを登録しましょう！</p>
+  <p>インスタグラムアカウントは必ず以下の設定を行ってください。</p>
+  <ul>
+    <li>ビジネスアカウントに切り替える。</li>
+    <li>ダイレクトメッセージの一般タブを空っぽにし、全部メインタブに移す。</li>
+    <li>非公開アカウントの設定を解除する。</li>
+  </ul>
+</div>
+<form class="login" action="./account_add_proccess" method="POST">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="field">
+    {{ field.label_tag }}<br/>
+    {{ field }}
+    {{ field.errors|yesno:'*,' }}
+  </div>
+  {% endfor %}
+  {% for field in form_sub %}
+  <div class="field">
+    {{ field.label_tag }}<br/>
+    {{ field }}
+    {{ field.errors|yesno:'*,' }}
+  </div>
+  {% endfor %}
+  <button type="submit" name="button">アカウント追加</button>
+</form>
+{% endblock %}
