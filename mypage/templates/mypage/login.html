@@ -1,19 +1,27 @@
 {% extends 'mypage/layout.html' %}
 
 {% block main %}
+{% load static %}
+<div class="login__rogo">
+  <img src="{% static 'images/stepdm_rogo.svg' %}" alt="ステップDM">
+</div>
 <div class="login_form__wrapper">
   <h2 class="login_title">ログイン</h2>
   <form class="login" action="./login_process" method="post">
     {% csrf_token %}
-    {% for field in form %}
     <div class="login_field">
-      {{ field.label_tag }}<br/>
-      {{ field }}
+      <label for="">メールアドレス</label>
+      {{ form.mail }}
       {{ field.errors|yesno:'*,' }}
     </div>
-    {% endfor %}
+    <div class="login_field">
+      <label for="">パスワード</label>
+      {{ form.password }}
+      {{ field.errors|yesno:'*,' }}
+    </div>
     <button class="login__button" type="submit" name="button">ログイン</button>
   </form>
-  <a class="login__switch" href="{% url 'signup' %}">新規登録する></a>
+  <p class="login__switch">初めての利用ですか？<a class="login__switch__link" href="{% url 'signup' %}">新規登録</a></p>
+  <img class="login__image" src="{% static 'images/Instagram_face.svg' %}" alt="">
 </div>
 {% endblock %}

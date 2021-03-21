@@ -1,12 +1,29 @@
-body {
-  box-sizing: border-box;
+:root {
+  --background_white: #efefef;
+  --normal_font: #504946;
+  --main_white: #fff;
+  --blue: #0075c2;
+  --orange: #fdd35c;
+  --yellow: #ffedab;
+  --green: rgb(167, 210, 141);
+  --font_family: 'ヒラギノ角ゴシック','Hiragino Sans','メイリオ', Meiryo,'Meiryo UI',YuGothic,'Yu Gothic','Segoe UI','Tahoma','Apple Symbols','Arial',sans-serif;
+}
+
+.body {
   font-size: 16px;
-  color: #555;
+  color: var(--normal_font);
+  font-family: var(--font_family);
+  background-color: var(--background_white);
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a {
   text-decoration: none;
-  color: #555;
+  color: var(--normal_font);
   display: block;
 }
 
@@ -16,22 +33,35 @@ li {
 }
 
 .container {
-  width: 90%;
-  margin: 0 auto;
+  width: auto;
+  margin: 70px 0 70px 60px;
+}
+
+.container_first {
+  width: auto;
+  margin: 0 0 150px 0;
 }
 
 /* header --------------------------------------------------------------------*/
 
 .header {
   width: 100%;
-  border-bottom: 1px solid #ccc;
+  background-color: var(--main_white);
+  box-shadow: 0 4px 4px #ccc;
+  position: fixed;
+  z-index: 200;
 }
 
 .header__above {
-  width: 90%;
+  width: 100%;
   display: flex;
-  padding: 20px 5%;
+  padding: 10px 1%;
   justify-content: space-between;
+  align-items: center;
+}
+
+.header__above__left {
+  display: flex;
   align-items: center;
 }
 
@@ -58,247 +88,441 @@ li {
 }
 
 .header__above__rogo {
-  font-size: 1.6rem;
+  width: 130px;
 }
 
-.header__under {
-  width: 90%;
+.header__account {
   display: flex;
-  background-color: #555;
-  padding: 0 5%;
+  margin: 0 0 0 10px;
 }
 
-.header__under__menu {
-  display: flex;
-  width: 100%;
-}
-
-.header__under__account__icon {
+.header__account__icon {
   width: 20px;
   height: 20px;
   float: left;
   margin: 13px 10px 17px 5px;
 }
 
-.header__under__menu__list {
-  min-height: 50px;
-  width: 130px;
+.header__account__main {
+  text-align: center;
   position: relative;
+  border-bottom: 2px solid var(--blue);
+  min-width: 170px;
 }
 
-.header__under__menu__list a {
+.header__otheraccount__button a {
+  color: var(--blue);
+  font-weight: bold;
+  font-size: 0.7rem;
+  background-color: var(--main_white);
+  border-top: 1px solid #ccc;
+}
+
+.header__otheraccount__account a {
+  color: var(--normal_font);
+}
+
+.header__account__main a {
   width: 100%;
   line-height: 50px;
   text-align: center;
+  padding: 0 10px;
+  font-size: 0.8rem;
 }
 
-.header__under__account__list {
-  min-height: 50px;
-  min-width: 180px;
-  text-align: center;
-  position: relative;
+.header__account__main > a:hover {
+  background-color: #eee;
 }
 
-.header__under__account__list a {
-  width: 100%;
-  line-height: 50px;
-  text-align: center;
+.header__otheraccount__button > a:hover {
+  background-color: #f5f5f5;
 }
 
-.header__under__account__list a:hover {
-  opacity: 0.7;
+.header__otheraccount__account > a {
+  background: var(--main_white);
 }
 
-.header__under__menu_list a {
-  color: #eee;
+.header__otheraccount__account > a:hover {
+  border-right: 2px solid var(--blue);
 }
 
-.header__under__menu_list a:hover {
-  color: #eee;
-  background-color: rgba(200, 200, 200, 0.7);
+.header__otheraccount__switch {
+  background: var(--main_white);
+  font-size: 0.7rem;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  font-weight: bold;
 }
 
-.header__under__otheraccount {
+.header__otheraccount {
   display: none;
-  top: 50px;
+  padding: 12px 0 0 0;
   position: absolute;
-  background-color: #eee;
+  width: 100%;
 }
 
-.header__under__mainaccount {
-  background-color: #eee;
-}
-
-.header__under__mainaccount:hover .header__under__otheraccount{
+.header__account__main:hover .header__otheraccount{
   display: block;
 }
 
+.messages {
+  padding: 20px;
+}
+
+/* side menu -----------------------------------------------------------------*/
+
+.side_menu {
+  width: 60px;
+  height: 100vh;
+  position: fixed;
+  padding: 8px;
+  top: 72px;
+  left: 0;
+  background: var(--blue);
+  z-index: 200;
+}
+
+.side_menu__list {
+  margin: 20px 0 0 0;
+  opacity: 0.9;
+}
+
+.side_menu__list:hover {
+  opacity: 1;
+}
+
+.side_menu__list img {
+  width: 44px;
+}
+
 /* login ---------------------------------------------------------------------*/
+
+.login__rogo {
+  width: 250px;
+  margin: 0 auto 50px auto;
+}
+
 .login_form__wrapper {
   width: 400px;
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
-  border: 2px solid #666;
+  padding: 40px 20px;
+  background-color: var(--main_white);
+  border-radius: 10px;
+  box-shadow: 0 0 15px #ccc;
+  position: relative;
 }
 
 .login_title {
   text-align: center;
   font-size: 1.5rem;
-  margin-bottom: 30px;:
 }
 
 .login_field {
-  margin-bottom: 25px;
+  margin-top: 25px;
 }
 
 .login_field input {
-  width: 380px;
-  padding: 10px;
+  margin: 10px 0 0 0;
+  width: 100%;
+  height: 36px;
+  padding: 0 25px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--background_white);
+  border: 1px solid #ddd;
+}
+
+.form__name {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__name input {
+  width: 48%;
+}
+
+.required::after {
+  content: "必須";
+  padding: 3px 6px;
+  font-size: 0.7rem;
+  color: #fff;
+  background-color: var(--orange);
+  margin: 0 0 0 10px;
 }
 
 .login__button {
-  width: 300px;
-  margin: 10px 50px;
-  line-height: 40px;
+  width: 100%;
+  margin: 50px 0 0 0;
+  height: 40px;
+  border-radius: 5px;
   font-size: 1.2rem;
   text-align: center;
-  background-color: #555;
+  background-color: var(--blue);
   color: #f5f5f5;
   border: none;
   cursor: pointer;
 }
 
 .login__switch {
+  margin: 40px 0 0 0;
   text-align: center;
   font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
 }
 
-/* content -------------------------------------------------------------------*/
+.login__switch__link {
+  color: var(--blue);
+  font-weight: bolder;
+}
+
+.login__image {
+  position: absolute;
+  width: 240px;
+  bottom: -150px;
+  left: -200px;
+}
+
+/* account add first ---------------------------------------------------------*/
+.account_add_first__wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.account_add_first__text {
+  width: 400px;
+  height: 500px;
+  background-image: url(../images/sunrize.jpg);
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+  position: relative;
+  color: #f5f5f5;
+}
+
+.account_add_first__text__container {
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  padding: 30px;
+  display: inline-block;
+  background-color: rgba(10, 10, 10, 0.7);
+}
+
+.account_add_first__text__cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.account_add_first__form {
+  width: 400px;
+  height: 500px;
+  background-color: var(--main_white);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 0 15px #ccc;
+}
+
+.account_add_first__text__welcome {
+  font-weight: border;
+  font-size: 1.4rem;
+  color: var(--green);
+  text-align: center;
+  margin: 10px 0 50px 0;
+}
+
+.account_add_first__text__welcome::before {
+  content: "☆";
+}
+.account_add_first__text__welcome::after {
+  content: "☆";
+}
+
+.account_add_first__text__content {
+  margin: 15px 0 0 0;
+  line-height: 1.6;
+}
+
+.account_add_first__text__check {
+  margin: 30px 0 0 0;
+  padding: 7px;
+  padding-left: 20px;
+}
+
+.account_add_first__text__check li {
+  line-height: 2;
+  font-size: 0.9rem;
+  font-weight: bolder;
+}
+
+.account_add_first__text__check li::before {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-image: url(../images/check_box.svg);
+  background-size: contain;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.account_add_first__image {
+  position: absolute;
+  width: 200px;
+  top: 350px;
+  left: -120px;
+}
+
+/* common -------------------------------------------------------------------*/
 
 .content {
   width: 100%;
-  padding: 80px 0;
-  min-height: 300px;
+  padding: 0 2%;
+  min-height: 100vh;
+}
+
+.page_title {
+  font-size: 1.8rem;
+}
+
+.board {
+  background-color: var(--main_white);
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ccc;
+  margin-top: 30px;
+  min-height: 150px;
+  overflow: hidden;
+}
+
+.board_title {
+  background-color: var(--background_white);
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 50px;
+}
+
+.board_title h3 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.board_content {
+  padding: 30px 20px;
+}
+
+.board_hint {
+  background-color: var(--yellow);
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
 }
 
 /* home ----------------------------------------------------------------------*/
 
-.home__wrapper {
+.dashboards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
-.home__informations {
+.dashbords__main {
   width: 600px;
 }
 
-.home__messages {
-  width: 500px;
-}
-
-.home__personal_message {
-  border: 2px solid #888;
-  padding: 10px;
-  margin-top: 30px;
-}
-
-.home__information__template {
-  border: 2px solid #888;
-  padding: 10px;
-  margin-top: 30px;
-}
-
-.home__title {
-  font-size: 1.3rem;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.home__information__follower {
-  border: 2px solid #888;
-  padding: 10px;
-  margin-top: 30px;
-}
-
-.home__information__template__content {
+.dashbords__templates_list {
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
 }
 
-.home__information__template__content__type {
+.dashbords__templates__type {
   font-size: 0.7rem;
   padding: 5px;
-  border: 1px solid #999;
-  margin-right: 10px;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  margin-right: 20px;
 }
 
-.home__information__template__content__name {
+.dashbords__templates__name {
   font-size: 1.2rem;
+  font-weight: bolder;
 }
 
-.home__information__template__content {
-  padding: 10px 0;
-}
-
-.home__information__personal_message__content:hover {
-  background-color: #eee;
-}
-
-.home__information__personal_message__content {
-  display: flex;
-  flex-direction: column;
-  padding: 5px 0;
-  border-bottom: 1px solid #aaa;
-}
-
-.home__information__personal_message__date {
-  font-size: 0.6rem;
-  opacity: 0.7;
-  margin-top: 5px;
-}
-
-.home__information__personal_message__date::after {
-  content: " -->返信する"
-}
-
-.home__information__personal_message__content__link:visited {
-  opacity: 0.7;
-}
-
-.home__information__personal_message__content__link:visited .home__information__personal_message__date::aftter {
-  content: " 返信済み"
-}
-
-.home__information__personal_message__contents_wrapper {
-  overflow-y: scroll;
-  height: 300px;
-}
-
-.home__information__follower__content {
+.dashboards__follower__content__inner {
   display: flex;
   justify-content: space-between;
 }
 
-.home__information__follower__wrapper {
-  height: 70px;
+.dashboards__follower__content__list {
+  text-align: center;
+}
+
+.dashboards__follower__content__list__name {
+  font-size: 0.9rem;
+}
+
+.dashboards__follower__content__list__num {
+  margin: 7px 0 0 0;
+  font-size: 2rem;
+}
+
+.dashboards__message__inner {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding: 10px;
+  border-bottom: 1px solid #aaa;
 }
 
-.home__information__follower__content__title {
-  font-size: 1.1rem;
-  text-align: center;
+.dashboards__message__inner:hover {
+  background-color: #f5f5f5;
 }
 
-.home__information__follower__content__number {
-  margin-top: 10px;
-  font-size: 2rem;
-  text-align: center;
+.dashboards__message {
+  width: 500px;
+}
+
+.dashboards__message__content__date {
+  font-size: 0.6rem;
+  opacity: 0.7;
+  margin-top: 5px;
+  color: var(--blue);
+  font-weight: bolder;
+}
+
+.dashboards__message__content {
+  overflow-y: scroll;
+  height: 300px;
+}
+
+.dashboards__message__content a:visited {
+  color: #999;
+}
+
+.dashboards__message__content a:visited .dashboards__message__content__date {
+  color: #999;
+}
+
+.dashboards__message__content a:visited span {
+  color: #fff;
+}
+
+.dashboards__message__content__text {
+  font-size: 0.8rem;
 }
 
 /* template ------------------------------------------------------------------*/
@@ -320,7 +544,7 @@ li {
   align-items: flex-end;
   justify-content: space-between;
   display: flex;
-  margin: 30px 20px;
+  margin: 0 20px 30px 20px;
   padding: 10px 0;
   border-bottom: 1px solid #bbb;
   align-items: flex-end;
@@ -337,7 +561,7 @@ li {
 
 .template_indes_valid__true {
   padding: 5px;
-  background-color: #2f506a;
+  background-color: var(--green);
   color: #f5f5f5;
   font-size: 0.8rem;
 }
@@ -359,11 +583,8 @@ li {
   color: #777;
 }
 
-.template_index__new {
-}
-
 .template_index__new a {
-  background-color: #555;
+  background-color: var(--blue);
   color: #f5f5f5;
   padding: 10px 20px;
 }
@@ -438,10 +659,8 @@ li {
 }
 
 .follower_show__level {
-  min-width: 400px;
-  height: 400px;
-  margin-top: 40px;
-  border: 2px solid #888;
+  width: 450px;
+  margin-bottom: 40px;
 }
 
 .follower_show__level__headding {
@@ -458,7 +677,7 @@ li {
 }
 
 .follower_show__level__list__content {
-  padding: 10px 20px;
+  padding: 15px 20px;
   border-bottom: 1px solid #aaa;
   display: flex;
   justify-content: space-between;
@@ -467,6 +686,9 @@ li {
 
 .follower_show__level__list__content:hover {
   background-color: #eee;
+}
+.follower_show__level__list__content__name {
+  font-size: 0.8rem;
 }
 
 .follower_show__level__list__content__date {
@@ -477,7 +699,7 @@ li {
 /* footer --------------------------------------------------------------------*/
 
 .footer {
-  padding: 30px 0 60px 0;
+  padding: 30px 0 30px 0;
   background-color: #555;
 }
 

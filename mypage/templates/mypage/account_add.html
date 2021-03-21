@@ -1,30 +1,40 @@
 {% extends 'mypage/layout.html' %}
 
 {% block main %}
-<h2 class="content__title">アカウント追加</h2>
-<p>インスタグラムアカウントを登録しましょう！</p>
-<p>インスタグラムアカウントは必ず以下の設定を行ってください。</p>
-<ul>
-  <li>ビジネスアカウントに切り替える。</li>
-  <li>ダイレクトメッセージの一般タブを空っぽにし、全部メインタブに移す。</li>
-  <li>非公開アカウントの設定を解除する。</li>
-</ul>
-<form class="login" action="./account_add_proccess" method="POST">
-  {% csrf_token %}
-  {% for field in form %}
-  <div class="field">
-    {{ field.label_tag }}<br/>
-    {{ field }}
-    {{ field.errors|yesno:'*,' }}
+<div class="account_add_first__wrapper">
+  <div class="account_add_first__text">
+    <div class="account_add_first__text__container">
+      <p class="account_add_first__text__content">インスタグラムアカウントは必ず以下の設定を行ってください。</p>
+      <ul class="account_add_first__text__check">
+        <li>ビジネスアカウントに切り替える。</li>
+        <li>ダイレクトメッセージの一般タブを空にする</li>
+        <li>非公開アカウントの設定を解除する。</li>
+      </ul>
+    </div>
+    {% load static %}
+    <img class="account_add_first__image" src="{% static 'images/Instagram_face.svg' %}" alt="">
   </div>
-  {% endfor %}
-  {% for field in form_sub %}
-  <div class="field">
-    {{ field.label_tag }}<br/>
-    {{ field }}
-    {{ field.errors|yesno:'*,' }}
+  <div class="account_add_first__form">
+    <h2 class="login_title">アカウント追加</h2>
+    <form class="login" action="./account_add_proccess" method="POST">
+      {% csrf_token %}
+      <div class="login_field">
+        <label class="required" for="">ユーザーネーム</label>
+        {{ form.user_name }}
+        {{ form.errors|yesno:'*,' }}
+      </div>
+      <div class="login_field">
+        <label class="required" for="">パスワード</label>
+        {{ form.password }}
+        {{ field.errors|yesno:'*,' }}
+      </div>
+      <div class="login_field">
+        <label class="required">パスワード(再入力)</label>
+        {{ form_sub.password2 }}
+        {{ field.errors|yesno:'*,' }}
+      </div>
+      <button class="login__button" type="submit" name="button">アカウント追加</button>
+    </form>
   </div>
-  {% endfor %}
-  <button type="submit" name="button">アカウント追加</button>
-</form>
+</div>
 {% endblock %}

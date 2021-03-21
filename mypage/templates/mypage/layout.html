@@ -7,48 +7,57 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
   </head>
-  <body>
+  <body class="body">
     <header class="header">
-        <div class="header__above">
-            <h1 class="header__above__rogo"><a href="{% url 'mypage' %}">インスタオートくん</a></h1>
-            {% if page != 'first_form' %}
-            <div class="header__above__details">
-              <p class="header__above__details__mail">{{ user.mail }}</p>
-              <p class="header__above__details__name">{{ user.last_name }} {{ user.first_name }}</p>
-              <a class="header__above__logout" href="{% url 'logout' %}">ログアウト</a>
-            </div>
-            {% endif %}
-        </div>
-        {% if page != 'first_form' %}
-        <div class="header__under">
-          <ul class="header__under__menu">
-            <li class="header__under__account__list header__under__mainaccount"><a href="#"><img class="header__under__account__icon" src="{% static 'images/instagram_icon.svg' %}" alt="">{{ main_account.user_name }}</a>
-              <ul class="header__under__otheraccount">
+      {% if page != 'first_form' %}
+      <div class="header__above">
+        <div class="header__above__left">
+          <h1 class="header__above__rogo"><a href="{% url 'mypage' %}"><img src="{% static 'images/stepdm_rogo.svg' %}" alt="ステップDM"></a></h1>
+          <ul class="header__account">
+            <li class="header__account__main"><a href="#"><img class="header__account__icon" src="{% static 'images/instagram_icon.svg' %}" alt="">{{ main_account.user_name }}</a>
+              <ul class="header__otheraccount">
                 {% for account in accounts %}
                 {% if account.id != main_account.id %}
-                <li class="header__under__account__list"><a href="{% url 'mypage_process' account.id%}"><img class="header__under__account__icon" src="{% static 'images/instagram_icon.svg' %}" alt="">{{ account.user_name }}</a></li>
+                <li class="header__otheraccount__switch">アカウントを切り替える</li>
+                <li class="header__otheraccount__account"><a href="{% url 'mypage_process' account.id%}">{{ account.user_name }}</a></li>
                 {% endif %}
                 {% endfor %}
                 {% if user.plan_id == 3 %}
-                <li class="header__under__account__list"><a href="{% url 'account_add' %}">アカウントを追加する</a></li>
+                <li class="header__otheraccount__button"><a href="{% url 'account_add' %}">アカウントを追加する ></a></li>
                 {% else %}
-                <li class="header__under__account__list header__under__menu_list"><a href="#">プランを変更</a></li>
+                <li class="header__otheraccount__button"><a href="#">プランを変更 ></a></li>
                 {% endif %}
               </ul>
             </li>
-            <li class="header__under__menu__list header__under__menu_list"><a href="{% url 'template_index' %}">テンプレ一ト</a>
-            </li>
-            <li class="header__under__menu__list header__under__menu_list"><a href="{% url 'follower_show' %}">フォロワー</a></li>
           </ul>
+
+        </div>
+          <div class="header__above__details">
+            <p class="header__above__details__name">{{ user.last_name }} {{ user.first_name }}</p>
+            <a class="header__above__logout" href="{% url 'logout' %}">ログアウト</a>
+          </div>
         </div>
         {% endif %}
     </header>
     <main>
+      {% if page != 'first_form' %}
+      <div class="side_menu">
+        <ul>
+          <li class="side_menu__list"><a href="{% url 'mypage' %}"><img src="{% static 'images/home_icon.svg' %}" alt="ダッシュボード"></a></li>
+          <li class="side_menu__list"><a href="{% url 'template_index' %}"><img src="{% static 'images/template_icon.svg' %}" alt="テンプレート"></a></li>
+          <li class="side_menu__list"><a href="{% url 'follower_show' %}"><img src="{% static 'images/follower_icon.svg' %}" alt="フォロワー"></a></li>
+        </ul>
+      </div>
+      {% endif %}
       <div class="messages">
         {% csrf_token %}
         <p>{{ message }}</p>
       </div>
+      {% if page == 'first_form' %}
+      <div class="container_first">
+      {% else %}
       <div class="container">
+      {% endif %}
         <div class="content">
           {% block main %}{% endblock %}
         </div>

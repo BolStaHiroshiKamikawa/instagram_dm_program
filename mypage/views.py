@@ -81,7 +81,7 @@ def signup_process(request) :
                 return redirect('signup')
 
     else :
-        request.session['message'] = ''
+        request.session['message'] = '入力内容に問題がありました。もう一度やり直してください。'
         return redirect('signup')
 
 def login(request) :
@@ -121,11 +121,13 @@ def account_add_first(request) :
         return redirect('login')
     form = AccountAddForm()
     form_sub = AccountPasswordAgainForm()
+    user = Users.objects.get(id = request.session.get('user_id', None))
     return render(request, 'mypage/account_add_first.html', {
         'page': 'first_form',
         'form': form,
         'form_sub': form_sub,
-        'name': request.session.get('login_user_name', '')
+        'user': user,
+        'message': request.session.get('message', '')
     })
 
 @require_POST
@@ -149,6 +151,7 @@ def account_add_first_proccess(request) :
                 request.session['message'] = 'パスワードが一致しません。もう一度入力してください。'
                 return redirect('account_add_first')
     else :
+        request.session['message'] = '入力内容に問題があります。やり直してください。'
         return redirect('account_add_first')
 
 def account_add(request) :

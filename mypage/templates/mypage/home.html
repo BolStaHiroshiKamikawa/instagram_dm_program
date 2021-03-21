@@ -1,63 +1,77 @@
 {% extends 'mypage/layout.html' %}
 
 {% block main %}
-<div class="home__wrapper">
-  <div class="home__informations">
-    <div class="home__information__template">
-      <h2 class="home__title">有効中のテンプレート</h2>
-      {% for template in templates %}
-      {% if template.valid == True %}
-      <div class="home__information__template__content">
-        {% if template.template_type_id == 1 %}
-        <p class="home__information__template__content__type">フォロー時</p>
-        {% elif template.template_type_id == 2 %}
-        <p class="home__information__template__content__type">ゲスト時</p>
-        {% elif template.template_type_id == 3 %}
-        <p class="home__information__template__content__type">リピーター時</p>
-        {% elif template.template_type_id == 4 %}
-        <p class="home__information__template__content__type">キャンペーン</p>
+<h2 class="page_title">ダッシュボード</h2>
+<div class="dashboards">
+  <div class="dashbords__main">
+    <div class="board dashbords__main__templates">
+      <div class="board_title">
+        <h3 >有効中のテンプレート</h3>
+      </div>
+      <div class="board_content">
+        {% for template in templates %}
+        {% if template.valid == True %}
+        <div class="dashbords__templates_list">
+          {% if template.template_type_id == 1 %}
+          <p class="dashbords__templates__type">フォロー時</p>
+          {% elif template.template_type_id == 2 %}
+          <p class="dashbords__templates__type">ゲスト時</p>
+          {% elif template.template_type_id == 3 %}
+          <p class="dashbords__templates__type">リピーター時</p>
+          {% elif template.template_type_id == 4 %}
+          <p class="dashbords__templates__type">キャンペーン</p>
+          {% endif %}
+          <p class="dashbords__templates__name">{{ template.name }}</p>
+        </div>
         {% endif %}
-        <p class="home__information__template__content__name">{{ template.name }}</p>
-      </div>
-      {% endif %}
-      {% endfor %}
-    </div>
-    <div class="home__information__follower">
-      <h2 class="home__title">現在のフォロワー数</h2>
-      <div class="home__information__follower__content">
-        <div class="home__information__follower__wrapper">
-          <h3 class="home__information__follower__content__title">フォロー</h3>
-          <p class="home__information__follower__content__number">{{ sended_follower }}</p>
-        </div>
-        <div class="home__information__follower__wrapper">
-          <h3 class="home__information__follower__content__title">ファン</h3>
-          <p class="home__information__follower__content__number">{{ sended_fun }}</p>
-        </div>
-        <div class="home__information__follower__wrapper">
-          <h3 class="home__information__follower__content__title">ゲスト</h3>
-          <p class="home__information__follower__content__number">{{ sended_guest }}</p>
-        </div>
-        <div class="home__information__follower__wrapper">
-          <h3 class="home__information__follower__content__title">リピーター</h3>
-          <p class="home__information__follower__content__number">{{ sended_repeater }}</p>
-        </div>
+        {% empty %}
+        <p>テンプレートがありません。登録しましょう！</p>
+        {% endfor %}
       </div>
     </div>
-    <br>
-    <p>※フォロー：フォロー時テンプレートを送信済みのフォロワー</p>
-    <p>※ファン：フォロー時テンプレートに返信したフォロワー</p>
-    <p>※ゲスト：クーポンを利用して一回目に来店したフォロワー</p>
-    <p>※リピーター：2回以上来店したフォロワー</p>
+    <div class="board">
+      <div class="board_title">
+        <h3 >現在のフォロワー数</h3>
+      </div>
+      <div class="board_content dashboards__follower__content">
+        <div class="dashboards__follower__content__inner">
+          <div class="dashboards__follower__content__list">
+            <h3 class="dashboards__follower__content__list__name">フォロー</h3>
+            <p class="dashboards__follower__content__list__num">{{ sended_follower }}</p>
+          </div>
+          <div class="dashboards__follower__content__list">
+            <h3 class="dashboards__follower__content__list__name">ファン</h3>
+            <p class="dashboards__follower__content__list__num">{{ sended_fun }}</p>
+          </div>
+          <div class="dashboards__follower__content__list">
+            <h3 class="dashboards__follower__content__list__name">ゲスト</h3>
+            <p class="dashboards__follower__content__list__num">{{ sended_guest }}</p>
+          </div>
+          <div class="dashboards__follower__content__list">
+            <h3 class="dashboards__follower__content__list__name">リピーター</h3>
+            <p class="dashboards__follower__content__list__num">{{ sended_repeater }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="board_hint">
+        <p>フォロー：フォロー時テンプレートを送信済みのフォロワー</p>
+        <p>ファン：フォロー時テンプレートに返信したフォロワー</p>
+        <p>ゲスト：クーポンを利用して一回目に来店したフォロワー</p>
+        <p>リピーター：2回以上来店したフォロワー</p>
+      </div>
+    </div>
   </div>
-  <div class="home__messages">
-    <div class="home__personal_message">
-      <h2 class="home__title">あなたへのお知らせ</h2>
-      <div class="home__information__personal_message__contents_wrapper">
-        {% for message in messages %}
-        <a class="home__information__personal_message__content__link" href="https://instagram.com/{{ message.link }}">
-          <div class="home__information__personal_message__content">
-            <p>{{ message.message }}</p>
-            <p class="home__information__personal_message__date">{{ message.created_at }}</p>
+  <div class="dashboards__message">
+    <div class="board">
+      <div class="board_title">
+        <h3>あなたへのお知らせ</h3>
+      </div>
+      <div class="board_content dashboards__message__content">
+        {% for message in messages reversed %}
+        <a href="https://instagram.com/{{ message.link }}">
+          <div class="dashboards__message__inner">
+            <p class="dashboards__message__content__text">{{ message.message }}</p>
+            <p class="dashboards__message__content__date">{{ message.created_at }}<span> -->返信する</span></p>
           </div>
         </a>
         {% endfor %}

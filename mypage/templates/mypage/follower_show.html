@@ -1,9 +1,12 @@
 {% extends 'mypage/layout.html' %}
 
 {% block main %}
+<h2 class="page_title">フォロワー総覧</h2>
 <div class="follower_show__wrapper">
-  <div class="follower_show__level">
-    <h2 class="follower_show__level__headding">フォロワー</h2>
+  <div class="board follower_show__level">
+    <div class="board_title">
+      <h3>フォロワー</h3>
+    </div>
     <div class="follower_show__level__list">
       {% for sended_account in sended_accounts %}
       {% if sended_account.account_level_id == 1 %}
@@ -17,8 +20,10 @@
       {% endfor %}
     </div>
   </div>
-  <div class="follower_show__level">
-    <h2 class="follower_show__level__headding">ファン</h2>
+  <div class="board follower_show__level">
+    <div class="board_title">
+      <h3>ファン</h3>
+    </div>
     <div class="follower_show__level__list">
       {% for sended_account in sended_accounts %}
       {% if sended_account.account_level_id == 2 %}
@@ -32,8 +37,10 @@
       {% endfor %}
     </div>
   </div>
-  <div class="follower_show__level">
-    <h2 class="follower_show__level__headding">ゲスト</h2>
+  <div class="board follower_show__level">
+    <div class="board_title">
+      <h3>ゲスト</h3>
+    </div>
     <div class="follower_show__level__list">
       {% for sended_account in sended_accounts %}
       {% if sended_account.account_level_id == 3 %}
@@ -47,8 +54,10 @@
       {% endfor %}
     </div>
   </div>
-  <div class="follower_show__level">
-    <h2 class="follower_show__level__headding">リピーター</h2>
+  <div class="board follower_show__level">
+    <div class="board_title">
+      <h3>リピーター</h3>
+    </div>
     <div class="follower_show__level__list">
       {% for sended_account in sended_accounts %}
       {% if sended_account.account_level_id == 4 %}
