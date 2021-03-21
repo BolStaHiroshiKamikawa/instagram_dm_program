@@ -8,7 +8,7 @@
       <h3>フォロワー</h3>
     </div>
     <div class="follower_show__level__list">
-      {% for sended_account in sended_accounts %}
+      {% for sended_account in sended_accounts reversed %}
       {% if sended_account.account_level_id == 1 %}
       <a href="https://instagram.com/{{ sended_account.user_name }}">
         <div class="follower_show__level__list__content">
@@ -25,7 +25,7 @@
       <h3>ファン</h3>
     </div>
     <div class="follower_show__level__list">
-      {% for sended_account in sended_accounts %}
+      {% for sended_account in sended_accounts reversed %}
       {% if sended_account.account_level_id == 2 %}
       <a href="https://instagram.com/{{ sended_account.user_name }}">
         <div class="follower_show__level__list__content">
@@ -42,7 +42,7 @@
       <h3>ゲスト</h3>
     </div>
     <div class="follower_show__level__list">
-      {% for sended_account in sended_accounts %}
+      {% for sended_account in sended_accounts reversed %}
       {% if sended_account.account_level_id == 3 %}
       <a href="https://instagram.com/{{ sended_account.user_name }}">
         <div class="follower_show__level__list__content">
@@ -59,7 +59,7 @@
       <h3>リピーター</h3>
     </div>
     <div class="follower_show__level__list">
-      {% for sended_account in sended_accounts %}
+      {% for sended_account in sended_accounts reversed %}
       {% if sended_account.account_level_id == 4 %}
       <a href="https://instagram.com/{{ sended_account.user_name }}">
         <div class="follower_show__level__list__content">
