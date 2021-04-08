@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,12 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+  'social_core.backends.facebook.FacebookOAuth2',
+  # 'social_core.backends.instagram.InstagramOAuth2',
+  'django.contrib.auth.backends.ModelBackend',
 ]
 
 WSGI_APPLICATION = 'insta_dm_app.wsgi.application'
