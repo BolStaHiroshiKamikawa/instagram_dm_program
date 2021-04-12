@@ -6,30 +6,25 @@
   {% csrf_token %}
   <div class="template_edit__form__wrapper">
     <div class="template_edit__form__option">
-      {% for field in template_add_form %}
       <div class="template_field">
-        {{ field.label_tag }}
-        {{ field }}
-        {{ field.errors|yesno:'*,' }}
+        <label for="">テンプレート名</label>
+        {{ template_add_form.name }}
       </div>
-      {% endfor %}
-      <button class="template__button" type="submit" name="button">保存する</button>
+      <div class="template_field">
+        <label for="">有効にしますか？</label>
+        {{ template_add_form.valid }}
+      </div>
     </div>
     <div class="template_edit__form__content">
-      {% for field in template_add_text_form %}
       <div class="template_field">
-        {{ field.label_tag }}
-        {{ field }}
-        {{ field.errors|yesno:'*,' }}
+        <label for="">メッセージ内容</label>
+        {{ template_add_text_form.content }}
       </div>
-      {% endfor %}
-      {% for field in template_add_file_form %}
       <div class="template_field">
-        {{ field.label_tag }}
-        {{ field }}
-        {{ field.errors|yesno:'*,' }}
+        {{ template_add_file_form.file_name }}
+        <label for="id_file_name">クーポン画像を選択する</label>
       </div>
-      {% endfor %}
+      <button class="template__button" type="submit" name="button">保存する</button>
     </div>
   </div>
 </form>

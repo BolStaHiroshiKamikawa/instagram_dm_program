@@ -1,4 +1,7 @@
 from django.urls import path
+from django.contrib import admin
+from django.conf.urls import include
+from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
@@ -8,6 +11,7 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('signup_process', views.signup_process, name='signup_process'),
     path('login', views.login, name='login'),
+    path('oauth', include('social_django.urls', namespace='social')),
     path('login_process', views.login_process, name='login_process'),
     path('logout', views.logout, name='logout'),
     path('account_add', views.account_add, name='account_add'),

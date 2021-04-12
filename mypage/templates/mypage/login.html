@@ -2,6 +2,8 @@
 
 {% block main %}
 {% load static %}
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v10.0&appId=790511898555589&autoLogAppEvents=1" nonce="XUb1Wpji"></script>
 <div class="login__rogo">
   <img src="{% static 'images/stepdm_rogo.svg' %}" alt="ステップDM">
 </div>
@@ -18,6 +20,9 @@
       <label for="">パスワード</label>
       {{ form.password }}
       {{ field.errors|yesno:'*,' }}
+    </div>
+    <div class="login_field">
+      <a href="{% url 'social:begin' 'facebook' %}">Facebookでログイン</a>
     </div>
     <button class="login__button" type="submit" name="button">ログイン</button>
   </form>
