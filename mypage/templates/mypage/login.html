@@ -21,9 +21,9 @@
       {{ form.password }}
       {{ field.errors|yesno:'*,' }}
     </div>
-    <div class="login_field">
+    <!-- <div class="login_field">
       <a href="{% url 'social:begin' 'facebook' %}">Facebookでログイン</a>
-    </div>
+    </div> -->
     <button class="login__button" type="submit" name="button">ログイン</button>
   </form>
   <p class="login__switch">初めての利用ですか？<a class="login__switch__link" href="{% url 'signup' %}">新規登録</a></p>
